@@ -1,7 +1,9 @@
 package hello.springmvc.basic.request;
 
+import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,4 +90,32 @@ public class RequestParamController {
         log.info("username = {} , age = {}",paramMap.get("username"),paramMap.get("age"));
         return "OK";
     }
+
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData){
+        //modelAttribute 를 통해 자동으로 생성해주고 , 자동으로 객체의 프로퍼티를 찾고 바인딩해준다.
+
+        log.info("helloData = {}",helloData);
+
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData helloData){
+        //modelAttribute 없이써도 자동 생략해도 된다. data 클래스가 잇으면 자동으로 매핑해준다.
+
+        log.info("helloData = {}",helloData);
+
+        return "ok";
+    }
+
+
+
+    // String, int , Integer 같은 단순 타입 = @RequestParam
+    // 나머지 = @ModelAttribute (argument resolver로 지정해둔 타입 외)
+    // ex) HttpServletResponse
+
 }
