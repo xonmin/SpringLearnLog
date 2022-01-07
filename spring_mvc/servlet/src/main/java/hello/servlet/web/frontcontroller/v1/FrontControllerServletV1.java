@@ -22,9 +22,9 @@ public class FrontControllerServletV1 extends HttpServlet {
     private Map<String, ControllerV1> controllerMap = new HashMap<>();
 
     public FrontControllerServletV1() {
-        controllerMap.put("/front-controller/v1/members/new-form",new MemberFormControllerV1());
-        controllerMap.put("/front-controller/v1/members/save",new MemberSaveControllerV1());
-        controllerMap.put("/front-controller/v1/members",new MemberListControllerV1());
+        controllerMap.put("/front-controller/v1/members/new-form", new MemberFormControllerV1());
+        controllerMap.put("/front-controller/v1/members/save", new MemberSaveControllerV1());
+        controllerMap.put("/front-controller/v1/members", new MemberListControllerV1());
     }
 
     @Override
@@ -35,12 +35,12 @@ public class FrontControllerServletV1 extends HttpServlet {
         String requestURI = request.getRequestURI(); //URI 받기
 
         ControllerV1 controller = controllerMap.get(requestURI); //controller 매핑정보가 져오기
-        if(controller == null){ //page가 없다면
+        if (controller == null) { //page가 없다면
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 
         //있다면 호출 이러한 로직을 구현하기 위해 다형성을 이요한 것이다.
-        controller.process(request,response);
+        controller.process(request, response);
     }
 }

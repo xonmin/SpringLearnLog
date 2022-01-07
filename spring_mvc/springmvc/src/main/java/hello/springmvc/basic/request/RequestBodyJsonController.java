@@ -41,29 +41,29 @@ public class RequestBodyJsonController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-   @PostMapping("/request-body-json-v1")
-   public void requestBodyJsonV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       ServletInputStream inputStream = request.getInputStream();
-       String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+    @PostMapping("/request-body-json-v1")
+    public void requestBodyJsonV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
-       log.info("messageBody ={}",messageBody);
-       HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
-       log.info("username ={}, age = {}",helloData.getUsername(),helloData.getAge());
+        log.info("messageBody ={}", messageBody);
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        log.info("username ={}, age = {}", helloData.getUsername(), helloData.getAge());
 
-       response.getWriter().write("OK");
-   }
+        response.getWriter().write("OK");
+    }
 
     @ResponseBody
     @PostMapping("/request-body-json-v2")
-    public String requestBodyJsonV2(@RequestBody String messageBody ) throws IOException {
+    public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
 
-        log.info("messageBody ={}",messageBody);
+        log.info("messageBody ={}", messageBody);
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
-        log.info("username ={}, age = {}",helloData.getUsername(),helloData.getAge());
+        log.info("username ={}, age = {}", helloData.getUsername(), helloData.getAge());
 
-      return "ok";
+        return "ok";
 
-      //문자로 변환하고 다시 json으로 변환하는 것이 불편따라서 @ModelAttribute처럼 한 번에 객체로 변환하는 방법을 찾아야함
+        //문자로 변환하고 다시 json으로 변환하는 것이 불편따라서 @ModelAttribute처럼 한 번에 객체로 변환하는 방법을 찾아야함
     }
 
 
@@ -82,8 +82,8 @@ public class RequestBodyJsonController {
 
     @ResponseBody
     @PostMapping("/request-body-json-v3")
-    public String requestBodyJsonV3(@RequestBody HelloData helloData )  {
-        log.info("username ={}, age = {}",helloData.getUsername(),helloData.getAge());
+    public String requestBodyJsonV3(@RequestBody HelloData helloData) {
+        log.info("username ={}, age = {}", helloData.getUsername(), helloData.getAge());
         return "ok";
     }
 
@@ -91,20 +91,19 @@ public class RequestBodyJsonController {
     // HttpEntity 사용해서 뽑기
     @ResponseBody
     @PostMapping("/request-body-json-v4")
-    public String requestBodyJsonV4(HttpEntity<HelloData>  helloData )  {
+    public String requestBodyJsonV4(HttpEntity<HelloData> helloData) {
         HelloData body = helloData.getBody();
-        log.info("username ={}, age = {}",body.getUsername(),body.getAge());
+        log.info("username ={}, age = {}", body.getUsername(), body.getAge());
         return "ok";
     }
 
     // return 도 httpMessageConverter가  자동으로 반환해서 리턴해준다.
     @ResponseBody
     @PostMapping("/request-body-json-v5")
-    public HelloData requestBodyJsonV5(@RequestBody HelloData  helloData )  {
-        log.info("username ={}, age = {}",helloData.getUsername(),helloData.getAge());
+    public HelloData requestBodyJsonV5(@RequestBody HelloData helloData) {
+        log.info("username ={}, age = {}", helloData.getUsername(), helloData.getAge());
         return helloData;
     }
-
 
 
 }

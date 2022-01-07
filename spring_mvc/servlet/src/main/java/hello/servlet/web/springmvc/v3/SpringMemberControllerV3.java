@@ -29,20 +29,20 @@ public class SpringMemberControllerV3 {
     public String members(Model model) {
         List<Member> members = memberRepository.findAll();
 
-        model.addAttribute("members",members);
+        model.addAttribute("members", members);
         return "members";
     }
 
 
     @PostMapping("/save")
     public String save(@RequestParam("username") String username,
-                                @RequestParam("age") int age,
-                                Model model) {
+                       @RequestParam("age") int age,
+                       Model model) {
 
         Member member = new Member(username, age);
         memberRepository.save(member);
 
-       model.addAttribute("member",member);
+        model.addAttribute("member", member);
         return "save-result";
 
     }

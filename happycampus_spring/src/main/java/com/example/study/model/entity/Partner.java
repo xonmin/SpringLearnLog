@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString(exclude = {"itemList","categoty"})
+@ToString(exclude = {"itemList", "categoty"})
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 
@@ -46,7 +46,7 @@ public class Partner {
 
     private LocalDateTime registeredAt;
 
-    private  LocalDateTime unregisteredAt;
+    private LocalDateTime unregisteredAt;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -55,7 +55,7 @@ public class Partner {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;
@@ -65,7 +65,7 @@ public class Partner {
     private Category category;
 
     // Partner 1: N item
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "partner")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "partner")
     private List<Item> itemList;
 
 }

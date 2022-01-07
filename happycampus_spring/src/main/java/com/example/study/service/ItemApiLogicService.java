@@ -27,7 +27,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
     public Header<ItemApiResponse> create(Header<ItemApiRequest> request) {
 
         return Optional.ofNullable(request.getData())
-                .map(body ->{
+                .map(body -> {
                     Item item = Item.builder()
                             .status(body.getStatus())
                             .name(body.getName())
@@ -43,7 +43,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
                 })
                 .map(newItem -> baseRepository.save(newItem))
                 .map(newItem -> response(newItem))
-                .orElseGet(()->Header.ERROR("데이터 없음"));
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
@@ -51,14 +51,14 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
 
         return baseRepository.findById(id)
                 .map(item -> response(item))
-                .orElseGet(()-> Header.ERROR("데이터 없음"));
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header<ItemApiResponse> update(Header<ItemApiRequest> request) {
 
         return Optional.ofNullable(request.getData())
-                .map(body ->{
+                .map(body -> {
                     return baseRepository.findById(body.getId());
                 })
                 .filter(Optional::isPresent)
@@ -82,7 +82,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
                 })
                 .map(changeItem -> baseRepository.save(changeItem))
                 .map(newItem -> response(newItem))
-                .orElseGet(()->Header.ERROR("데이터 없음"));
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
 
     }
 
@@ -94,10 +94,10 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
                     baseRepository.delete(item);
                     return Header.OK();
                 })
-                .orElseGet(()->Header.ERROR("데이터 없음"));
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-    public Header<ItemApiResponse> response(Item item){
+    public Header<ItemApiResponse> response(Item item) {
 
         ItemApiResponse body = ItemApiResponse.builder()
                 .id(item.getId())

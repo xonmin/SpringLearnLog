@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest, OrderGroupApiResponse,OrderGroup> {
+public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest, OrderGroupApiResponse, OrderGroup> {
 
     @Autowired
     private UserRepository userRepository;
@@ -52,14 +52,13 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
     }
 
 
-
     @Override
     public Header<OrderGroupApiResponse> read(Long id) {
 
         return baseRepository.findById(id)
                 .map(orderGroup -> response(orderGroup))
                 .orElseGet(
-                        ()->Header.ERROR("NO data"));
+                        () -> Header.ERROR("NO data"));
 
     }
 
@@ -72,7 +71,7 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
         //2. id -> ordergroup
         Optional<OrderGroup> optional = baseRepository.findById(orderGroupApiRequest.getId());
 
-        return  optional.map(orderGroup -> {
+        return optional.map(orderGroup -> {
 
             orderGroup.setStatus(orderGroupApiRequest.getStatus())
                     .setOrderType(orderGroupApiRequest.getOrderType())
@@ -103,7 +102,7 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
         return optional.map(orderGroup -> {
             baseRepository.delete(orderGroup);
 
-            return  Header.OK();
+            return Header.OK();
         }).orElseGet(() -> Header.ERROR("No data"));
 
     }
@@ -126,7 +125,6 @@ public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest,
 
         return Header.OK(orderGroupApiResponse);
     }
-
 
 
 }

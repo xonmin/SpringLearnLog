@@ -13,9 +13,9 @@ import java.util.List;
 
 
 @Component
-public abstract class BaseService<Req,Res,Entity> implements CrudInterface<Req,Res> {
+public abstract class BaseService<Req, Res, Entity> implements CrudInterface<Req, Res> {
 
     @Autowired(required = false)
-    protected JpaRepository<Entity,Long> baseRepository;
+    protected JpaRepository<Entity, Long> baseRepository;
     // JpaRepository<Item,Long>
 }

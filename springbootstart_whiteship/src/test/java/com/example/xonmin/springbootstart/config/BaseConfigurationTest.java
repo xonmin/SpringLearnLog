@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BaseConfigurationTest {
 
     @Bean
-    public String hello(){
+    public String hello() {
 
         return "hello test";
     }

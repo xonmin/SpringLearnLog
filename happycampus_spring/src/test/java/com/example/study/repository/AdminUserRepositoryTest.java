@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 public class AdminUserRepositoryTest extends StudyApplicationTests {
 
     @Autowired
-    private  AdminUserRepository adminUserRepository ;
+    private AdminUserRepository adminUserRepository;
 
 
     @Test
-    public void create(){
+    public void create() {
         AdminUser adminUser = new AdminUser();
         adminUser.setAccount("AdminUser01");
         adminUser.setPassword("AdminUser01");

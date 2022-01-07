@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelloController {
 
     @GetMapping
-    public String hello(Model model){
+    public String hello(Model model) {
         model.addAttribute("data", "hello");
         return "hello";  //html 파일 화면의 data의 값에 전달
-   }
+    }
 }

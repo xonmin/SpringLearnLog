@@ -25,37 +25,26 @@ public class User {
     //jpa entity 는 camel case -> DB의 snake_case로 바꾼다.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //어떤식으로 관리할 것인지.
-    private  Long id;
-
-    private  String account;
+    private Long id;
+    private String account;
     private String password;
-
     @Enumerated(EnumType.STRING)
     private UserStatus status;
-
-    private  String email;
-    private  String phoneNumber;
-
-
+    private String email;
+    private String phoneNumber;
     private LocalDateTime registeredAt;
-
     private LocalDateTime unregisteredAt;
-
     @CreatedDate
     private LocalDateTime createdAt;
-
     @CreatedBy
     private String createdBy;
-
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
-
+    private LocalDateTime updatedAt;
     @LastModifiedBy
     private String updatedBy;
 
-
     // User 1 : n OrderGroup
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<OrderGroup> orderGroupList;
 
 

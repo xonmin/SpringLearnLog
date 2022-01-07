@@ -8,7 +8,7 @@ public class Store {
 		this.payment = payment;
 	}
 
-	public void buySomething(int amount){
+	public void buySomething(int amount) {
 		payment.pay(amount);
 	}
 }

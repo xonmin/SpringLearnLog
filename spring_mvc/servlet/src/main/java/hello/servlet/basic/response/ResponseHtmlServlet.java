@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "responseHtmlServlet", urlPatterns ="/response-html" )
+@WebServlet(name = "responseHtmlServlet", urlPatterns = "/response-html")
 public class ResponseHtmlServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //contentType : text/html ; charset = utf-8
-         resp.setContentType("text/html");
-         resp.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("utf-8");
 
 
         PrintWriter writer = resp.getWriter();

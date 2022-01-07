@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "mvcMemberListServlet", urlPatterns = "/servlet-mvc/members" )
+@WebServlet(name = "mvcMemberListServlet", urlPatterns = "/servlet-mvc/members")
 public class MvcMemberListServlet extends HttpServlet {
 
-    private MemberRepository memberRepository =  MemberRepository.getInstance();
+    private MemberRepository memberRepository = MemberRepository.getInstance();
 
 
     @Override
@@ -23,10 +23,10 @@ public class MvcMemberListServlet extends HttpServlet {
         System.out.println("MemberList.service");
         List<Member> members = memberRepository.findAll();
 
-        request.setAttribute("members",members);
+        request.setAttribute("members", members);
 
         String viewPath = "/WEB-INF/views/members.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
     }
 }

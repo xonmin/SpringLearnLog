@@ -26,17 +26,18 @@ public class RequestBodyStringController {
 
     @PostMapping("/request-body-string-v1")
     public void requestBodyString(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ServletInputStream inputStream =  request.getInputStream();
+        ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-        log.info("messageBody = {}",messageBody);
+        log.info("messageBody = {}", messageBody);
 
         response.getWriter().write("ok");
     }
+
     @PostMapping("/request-body-string-v2")
     public void requestBodyStringV2(InputStream inputStream, Writer responseWriter) throws IOException {
 
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-        log.info("messageBody = {}",messageBody);
+        log.info("messageBody = {}", messageBody);
 
         responseWriter.write("ok");
     }
@@ -54,10 +55,11 @@ public class RequestBodyStringController {
                 - view 조회 X
          */
         String body = httpEntity.getBody();
-        log.info("messageBody = {}",body);
+        log.info("messageBody = {}", body);
 
         return new HttpEntity<>("OK");
     }
+
     //이제부터 진짜
     @PostMapping("/request-body-string-v3_2")
     public HttpEntity<String> requestBodyStringV3_2(RequestEntity<String> httpEntity) throws IOException {
@@ -69,9 +71,9 @@ public class RequestBodyStringController {
                 statusCode 설정 및 응답에서 사용
          */
         String body = httpEntity.getBody();
-        log.info("messageBody = {}",body);
+        log.info("messageBody = {}", body);
 
-        return new ResponseEntity<>("OK",HttpStatus.CREATED);
+        return new ResponseEntity<>("OK", HttpStatus.CREATED);
     }
 
     //이제부터 진짜
@@ -85,7 +87,7 @@ public class RequestBodyStringController {
 
          */
 
-        log.info("messageBody = {}",messageBody);
+        log.info("messageBody = {}", messageBody);
         return "OK";
     }
 }

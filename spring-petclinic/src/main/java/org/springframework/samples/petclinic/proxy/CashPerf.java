@@ -13,9 +13,9 @@ public class CashPerf implements Payment { // 프록시코드구현
 		//
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
-			cash.pay(amount);
+		cash.pay(amount);
 
-			stopWatch.stop();
+		stopWatch.stop();
 		System.out.println(stopWatch.prettyPrint());
 
 	}

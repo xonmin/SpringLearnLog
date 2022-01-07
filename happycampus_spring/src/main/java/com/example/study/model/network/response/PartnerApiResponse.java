@@ -18,7 +18,7 @@ public class PartnerApiResponse {
 
     private Long id;
 
-    private  String name;
+    private String name;
 
     private PartnerStatus status;
 
@@ -26,9 +26,9 @@ public class PartnerApiResponse {
 
     private String callCenter;
 
-    private  String partnerNumber;
+    private String partnerNumber;
 
-    private  String businessNumber;
+    private String businessNumber;
 
     private String ceoName;
 

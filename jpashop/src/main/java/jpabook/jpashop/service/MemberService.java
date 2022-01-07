@@ -27,29 +27,31 @@ public class MemberService {
     @Transactional
     public Long join(Member member) {
 
-            validateDuplicateMember(member);
-            memberRepository.save(member);
-            return member.getId();
+        validateDuplicateMember(member);
+        memberRepository.save(member);
+        return member.getId();
 
-        }
+    }
 
     private void validateDuplicateMember(Member member) {
-            // 중복회원 조회
-            // error 시 exception
+        // 중복회원 조회
+        // error 시 exception
 
-        List<Member> findMembers= memberRepository.findByName(member.getName());
-        if(!findMembers.isEmpty()){
-            throw  new IllegalStateException("Already Exist User");
+        List<Member> findMembers = memberRepository.findByName(member.getName());
+        if (!findMembers.isEmpty()) {
+            throw new IllegalStateException("Already Exist User");
         }
     }
+
     //회원 전체 조회
     @Transactional(readOnly = true)
-    public List<Member> findMembers(){
-            return memberRepository.findAll();
-    }
-    @Transactional(readOnly = true)
-    public Member findOne(Long id){
-            return memberRepository.findOne(id);
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Member findOne(Long id) {
+        return memberRepository.findOne(id);
     }
+
+}

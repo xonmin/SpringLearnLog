@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
@@ -39,17 +40,18 @@ public class SampleControllerTest {
     SampleService sampleService;
 
     @Test
-    public void hello() throws Exception{
-            mockMvc.perform(get("/hello"))
-            .andExpect(status().isOk()) //밑에 프린트로 찍은 내용 response를 assertion 할 수 잇다.
-            .andExpect(content().string("hello xonmin"))
-                    .andDo(print());
+    public void hello() throws Exception {
+        mockMvc.perform(get("/hello"))
+                .andExpect(status().isOk()) //밑에 프린트로 찍은 내용 response를 assertion 할 수 잇다.
+                .andExpect(content().string("hello xonmin"))
+                .andDo(print());
     }
+
     @Test
-    public void hello2() throws Exception{
+    public void hello2() throws Exception {
         when(sampleService.getName()).thenReturn("xonmin");
 
-        String result = testRestTemplate.getForObject("/hello",String.class);
+        String result = testRestTemplate.getForObject("/hello", String.class);
         assertThat(result).isEqualTo("hello xonmin");
         assertThat(outputCapture.toString()).contains("holoman");
     }

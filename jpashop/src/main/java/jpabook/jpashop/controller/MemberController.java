@@ -22,16 +22,16 @@ public class MemberController {
 
 
     @GetMapping("/members/new")
-    public String createForm(Model model){
+    public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());  // html 의 th:Object와 연결
         return "members/createMemberForm";
     }
 
     @PostMapping("/members/new")
-    public String create(@Valid  MemberForm form, BindingResult result){
+    public String create(@Valid MemberForm form, BindingResult result) {
         // binding Result => 오류가 있다면, 튕기 지않고 오류가 담겨서 실행이 된다.
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             // 에러 발생시, 다시 화면으로 돌아가게 만들었다. @valid 로 인해 이름 미 필기시 @NotEmpty 에러 메세지 보임
             return "members/createMemberForm";
         }
@@ -47,9 +47,9 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    public String list(Model model){
+    public String list(Model model) {
         List<Member> members = memberService.findMembers();
-        model.addAttribute("members",members);
+        model.addAttribute("members", members);
         return "members/memberList";
     }
 

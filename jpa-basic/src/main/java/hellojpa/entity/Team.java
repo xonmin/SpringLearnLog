@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Team {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -23,8 +25,8 @@ public class Team {
     @OneToMany(mappedBy = "team") //member에 무슨 변수와 매핑되어잇는지
     private List<Member> members = new ArrayList<>();
 
-//halo
-    private void addMember(Member member){
+    //halo
+    private void addMember(Member member) {
         member.setTeam(this);
         members.add(member);
     }

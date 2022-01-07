@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(properties = "xonmin.name = xonMIN")
 @SpringBootTest
 class SpringbootstartApplicationTests {
-    
+
     @Autowired
     Environment environment;
 

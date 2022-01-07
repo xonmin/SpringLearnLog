@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class MappingController {
     //request mapping 은 배열로 제공되므로 다중 설정이 가능하다.
-    @RequestMapping(value = "/hello-basic",method = RequestMethod.GET)
-    public String helloBasic(){
+    @RequestMapping(value = "/hello-basic", method = RequestMethod.GET)
+    public String helloBasic() {
         log.info("HelloBasic");
         return "ok";
     }
@@ -22,6 +22,7 @@ public class MappingController {
 
     /**
      * 편리한 축약 애노테이션 (코드보기) * @GetMapping
+     *
      * @PostMapping
      * @PutMapping
      * @DeleteMapping
@@ -35,12 +36,13 @@ public class MappingController {
     }
 
     /**
-
      * PathVariable 사용
      * 변수명이 같으면 생략 가능
-     * @PathVariable("userId") String userId -> @PathVariable userId */
+     *
+     * @PathVariable("userId") String userId -> @PathVariable userId
+     */
     @GetMapping("/mapping/{userId}")
-    public String mappingPath(@PathVariable String userId){
+    public String mappingPath(@PathVariable String userId) {
         log.info("mappingPath userId = {}", userId);
         return "ok";
     }
@@ -73,7 +75,7 @@ public class MappingController {
     }
 
     /**
-     *특정 헤더로 추가 매핑
+     * 특정 헤더로 추가 매핑
      * headers="mode",
      * headers="!mode"
      * headers="mode=debug"
@@ -100,11 +102,11 @@ public class MappingController {
         return "ok";
     }
 
-     /**
-      *  Accept 헤더 기반 Media Type * produces = "text/html"
-      * produces = "!text/html" * produces = "text/*"
-      * produces = "*\/*"
-      */
+    /**
+     * Accept 헤더 기반 Media Type * produces = "text/html"
+     * produces = "!text/html" * produces = "text/*"
+     * produces = "*\/*"
+     */
 
     @PostMapping(value = "/mapping-produce", produces = MediaType.TEXT_HTML_VALUE)
     public String mappingProduces() {

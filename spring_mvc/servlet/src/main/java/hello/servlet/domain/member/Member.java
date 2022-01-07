@@ -4,7 +4,8 @@ package hello.servlet.domain.member;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter @Getter
+@Setter
+@Getter
 public class Member {
 
     private Long id;

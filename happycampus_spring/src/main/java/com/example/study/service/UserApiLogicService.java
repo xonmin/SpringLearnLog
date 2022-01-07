@@ -26,15 +26,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse,User> {
+public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
 
-   @Autowired
-   UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-   @Autowired
-   private  OrderGroupApiLogicService orderGroupApiLogicService;
-   @Autowired
-   private ItemApiLogicService itemApiLogicService;
+    @Autowired
+    private OrderGroupApiLogicService orderGroupApiLogicService;
+    @Autowired
+    private ItemApiLogicService itemApiLogicService;
 
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
@@ -59,8 +59,6 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         //3. 생성된 데이터 -> UserApiResponse return
 
 
-
-
         return Header.OK(response(newUser));
     }
 
@@ -68,11 +66,11 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
     public Header<UserApiResponse> read(Long id) {
 
         //id ->  repository getOne, getById
-      return baseRepository.findById(id)
-                .map(user ->response(user))
-              .map(userApiResponse -> Header.OK(userApiResponse))
+        return baseRepository.findById(id)
+                .map(user -> response(user))
+                .map(userApiResponse -> Header.OK(userApiResponse))
                 .orElseGet( //없다면
-                        ()->Header.ERROR("NO DATA"));
+                        () -> Header.ERROR("NO DATA"));
 
     }
 
@@ -85,26 +83,25 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
 
         //2. id -> user
 
-       Optional<User> optional = baseRepository.findById(userApiRequest.getId());
+        Optional<User> optional = baseRepository.findById(userApiRequest.getId());
 
-       return optional.map(user -> {
-           //3.  ㅇㅁㅅㅁ  -> update
-           // 해당 아이디에서 대해 update
-           user.setAccount(userApiRequest.getAccount())
-                   .setPassword(userApiRequest.getPassword())
-                   .setStatus(userApiRequest.getStatus())
-                   .setPhoneNumber(userApiRequest.getPhoneNumber())
-                   .setEmail(userApiRequest.getEmail())
-                   .setRegisteredAt(userApiRequest.getRegisteredAt())
-                   .setUnregisteredAt(userApiRequest.getUnregisteredAt());
+        return optional.map(user -> {
+            //3.  ㅇㅁㅅㅁ  -> update
+            // 해당 아이디에서 대해 update
+            user.setAccount(userApiRequest.getAccount())
+                    .setPassword(userApiRequest.getPassword())
+                    .setStatus(userApiRequest.getStatus())
+                    .setPhoneNumber(userApiRequest.getPhoneNumber())
+                    .setEmail(userApiRequest.getEmail())
+                    .setRegisteredAt(userApiRequest.getRegisteredAt())
+                    .setUnregisteredAt(userApiRequest.getUnregisteredAt());
 
-           return user;
-       })
-               .map(user -> baseRepository.save(user)) //update
-               .map(updateUser->response(updateUser))
-               .map(Header::OK)
-               .orElseGet(() ->Header.ERROR("NO data"));
-
+            return user;
+        })
+                .map(user -> baseRepository.save(user)) //update
+                .map(updateUser -> response(updateUser))
+                .map(Header::OK)
+                .orElseGet(() -> Header.ERROR("NO data"));
 
 
         //4. userApriResponse
@@ -115,7 +112,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
     public Header delete(Long id) {
 
         // id -> repository -> user
-           Optional<User> optional = baseRepository.findById(id);
+        Optional<User> optional = baseRepository.findById(id);
 
 
         // repository -> delete
@@ -123,14 +120,14 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
             baseRepository.delete(user);
 
             return Header.OK();
-        }).orElseGet(()-> Header.ERROR("No data"));
+        }).orElseGet(() -> Header.ERROR("No data"));
 
         //response return
 
 
     }
 
-    private UserApiResponse response(User user){
+    private UserApiResponse response(User user) {
         // user -> userapiresponse
 
         UserApiResponse userApiResponse = UserApiResponse.builder()
@@ -147,14 +144,15 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         // Header + data
         return userApiResponse;
     }
+
     @GetMapping("")
 
     public Header<List<UserApiResponse>> search(Pageable pageable) {
         Page<User> users = baseRepository.findAll(pageable);
 
-      List<UserApiResponse> userApiResponseList = users.stream()
-              .map(user -> response(user))
-              .collect(Collectors.toList());
+        List<UserApiResponse> userApiResponseList = users.stream()
+                .map(user -> response(user))
+                .collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(users.getTotalPages())
@@ -163,7 +161,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                 .currentElements(users.getNumberOfElements())
                 .build();
 
-      return Header.OK(userApiResponseList,pagination);
+        return Header.OK(userApiResponseList, pagination);
     }
 
 
@@ -174,33 +172,31 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         UserApiResponse userApiResponse = response(user);
 
 
-
-
         //ordergroup
-       List <OrderGroup> orderGroupList = user.getOrderGroupList();
-       List<OrderGroupApiResponse> orderGroupApiResponseList = orderGroupList.stream()
-               .map(orderGroup -> {
-                   OrderGroupApiResponse orderGroupApiResponse =  orderGroupApiLogicService.response(orderGroup).getData();
+        List<OrderGroup> orderGroupList = user.getOrderGroupList();
+        List<OrderGroupApiResponse> orderGroupApiResponseList = orderGroupList.stream()
+                .map(orderGroup -> {
+                    OrderGroupApiResponse orderGroupApiResponse = orderGroupApiLogicService.response(orderGroup).getData();
 
-                   // item api response
-                   List<ItemApiResponse> itemApiResponseList = orderGroup.getOrderDetailList().stream()
-                           .map(detail -> detail.getItem())
-                           .map(item-> itemApiLogicService.response(item).getData())
-                           .collect(Collectors.toList());
+                    // item api response
+                    List<ItemApiResponse> itemApiResponseList = orderGroup.getOrderDetailList().stream()
+                            .map(detail -> detail.getItem())
+                            .map(item -> itemApiLogicService.response(item).getData())
+                            .collect(Collectors.toList());
 
-                   orderGroupApiResponse.setItemApiResponseList(itemApiResponseList);
-                   return orderGroupApiResponse;
+                    orderGroupApiResponse.setItemApiResponseList(itemApiResponseList);
+                    return orderGroupApiResponse;
 
-               })
-               .collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
 
-       userApiResponse.setOrderGroupApiResponseList(orderGroupApiResponseList);
+        userApiResponse.setOrderGroupApiResponseList(orderGroupApiResponseList);
 
-       UserOrderInfoApiResponse userOrderInfoApiResponse = UserOrderInfoApiResponse.builder()
-               .userApiResponse(userApiResponse)
-               .build();
+        UserOrderInfoApiResponse userOrderInfoApiResponse = UserOrderInfoApiResponse.builder()
+                .userApiResponse(userApiResponse)
+                .build();
 
-       return Header.OK(userOrderInfoApiResponse);
+        return Header.OK(userOrderInfoApiResponse);
 
     }
 }

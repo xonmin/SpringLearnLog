@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="dtype")
+@DiscriminatorColumn(name = "dtype")
 public abstract class Item {
 
     @Id
@@ -36,18 +37,17 @@ public abstract class Item {
      */
 
     // 비즈니스 로직 //
-    public void addStock(int quantity){  // 재고 증가
+    public void addStock(int quantity) {  // 재고 증가
         this.stockQuantity += quantity;
     }
 
-    public void removeStock(int quantity){
-        int restStock = this.stockQuantity-quantity;
-        if(restStock < 0){
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0) {
             throw new NotEnoughStockException("need more stock");
         }
         this.stockQuantity = restStock;
     }
-
 
 
 }

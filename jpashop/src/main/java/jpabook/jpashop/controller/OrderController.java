@@ -25,14 +25,14 @@ public class OrderController {
 
 
     @GetMapping("/order")
-    public String createForm(Model model){
+    public String createForm(Model model) {
 
         List<Member> members = memberService.findMembers(); //모든 멤버 다 불러오기
         List<Item> items = itemService.findItems(); //모든 아이템 불러오기
 
         //model에 불러온 모든 데이터 넘기기
         model.addAttribute("members", members);
-        model.addAttribute("items",items);
+        model.addAttribute("items", items);
 
 
         return "order/orderForm";
@@ -42,7 +42,7 @@ public class OrderController {
     @PostMapping("/order")
     public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId,
-                        @RequestParam("count") int count){
+                        @RequestParam("count") int count) {
 
         //식별자만 넘겨주고 비즈니스 로직은 그 안에서 돌리도록 하는 것이 좋다.
         orderService.order(memberId, itemId, count);
@@ -52,16 +52,16 @@ public class OrderController {
 
 
     @GetMapping("/orders")
-    public String orderList(@ModelAttribute("orderSearch")OrderSearch orderSearch, Model model){
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
-        model.addAttribute("orders",orders);
+        model.addAttribute("orders", orders);
 
         return "order/orderList";
 
     }
 
     @PostMapping(value = "orders/{orderId}/cancel")
-    public String cancelOrder(@PathVariable("orderId")Long orderId){
+    public String cancelOrder(@PathVariable("orderId") Long orderId) {
         orderService.cancelOrder(orderId);
 
         return "redirect:/orders";

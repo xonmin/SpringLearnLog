@@ -24,8 +24,8 @@ public class RequestParamServlet extends HttpServlet {
                 .forEachRemaining(paramName -> System.out.println(paramName + " =" + request.getParameter(paramName)));
 
         //단일 파라미터 조회
-         String username = request.getParameter("username");
-         String age =  request.getParameter("age");
+        String username = request.getParameter("username");
+        String age = request.getParameter("age");
 
         System.out.println(username + age);
 
@@ -36,7 +36,7 @@ public class RequestParamServlet extends HttpServlet {
 
         // 여러 값을 가지므로 retrun 은 배열로 받아진다.
         String[] usernames = request.getParameterValues("username");
-        for(String name : usernames){
+        for (String name : usernames) {
             System.out.println(name);
         }
     }

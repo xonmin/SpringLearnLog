@@ -17,7 +17,7 @@ public class PartnerRepositoryTest extends StudyApplicationTests {
     private PartnerRepository partnerRepository;
 
     @Test
-    public void create(){
+    public void create() {
         String name = "Partner01";
         PartnerStatus status = PartnerStatus.REGISTERED;
         String address = "Seoul";
@@ -45,11 +45,11 @@ public class PartnerRepositoryTest extends StudyApplicationTests {
         Partner newPartner = partnerRepository.save(partner);
 
         Assertions.assertNotNull(newPartner);
-        Assertions.assertEquals(newPartner.getName(),name);
+        Assertions.assertEquals(newPartner.getName(), name);
     }
 
     @Test
-    public void read(){
+    public void read() {
 
     }
 }

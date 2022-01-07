@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString(exclude = {"orderDetailList","partner"})
+@ToString(exclude = {"orderDetailList", "partner"})
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 @Accessors(chain = true)
@@ -32,19 +32,19 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus status; // regi ,unregi , waiting
 
-   private String name;
-   private String title;
-   private String content;
-   private BigDecimal price;
+    private String name;
+    private String title;
+    private String content;
+    private BigDecimal price;
 
-   private String brandName;
-   //Item N : 1 Partner
+    private String brandName;
+    //Item N : 1 Partner
     @ManyToOne
-   private  Partner partner;
+    private Partner partner;
 
-   private LocalDateTime registeredAt;
+    private LocalDateTime registeredAt;
 
-   private  LocalDateTime unregisteredAt;
+    private LocalDateTime unregisteredAt;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -53,13 +53,13 @@ public class Item {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;
 
     // Item  1 : N OrderDetail
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-    private  List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList;
 
 }

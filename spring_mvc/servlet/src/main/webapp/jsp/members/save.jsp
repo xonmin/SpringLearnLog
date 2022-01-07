@@ -18,7 +18,7 @@
     String username = request.getParameter("username");
     int age = Integer.parseInt(request.getParameter("age"));
 
-    Member member = new Member(username,age);
+    Member member = new Member(username, age);
     memberRepository.save(member);
 %>
 <html>
@@ -28,9 +28,12 @@
 <body>
 성공
 <ul>
-    <li>id = <%=member.getId()%></li>
-    <li>username = <%=member.getUsername()%></li>
-    <li>age = <%=member.getAge()%></li>
+    <li>id = <%=member.getId()%>
+    </li>
+    <li>username = <%=member.getUsername()%>
+    </li>
+    <li>age = <%=member.getAge()%>
+    </li>
 </ul>
 <a href="/index.html">main
 </a>

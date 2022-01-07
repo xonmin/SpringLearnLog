@@ -13,9 +13,10 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "memberListServlet", urlPatterns = "/servlet/members")
-public class MemberListServlet  extends HttpServlet {
+public class MemberListServlet extends HttpServlet {
 
     private MemberRepository memberRepository = MemberRepository.getInstance();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         List<Member> members = memberRepository.findAll();
@@ -50,7 +51,6 @@ public class MemberListServlet  extends HttpServlet {
 
         w.write("</body>");
         w.write("</html>");
-
 
 
     }

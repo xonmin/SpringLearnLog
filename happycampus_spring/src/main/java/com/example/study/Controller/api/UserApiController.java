@@ -34,13 +34,13 @@ public class UserApiController extends CrudController<UserApiRequest, UserApiRes
     private final UserApiLogicService userApiLogicService;
 
     @GetMapping("/{id}/orderInfo")
-    public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable Long id){
+    public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable Long id) {
         return userApiLogicService.orderInfo(id);
     }
 
     @GetMapping("/search")
-    public Header<List<UserApiResponse>> findAll(@PageableDefault(sort = { "id" }, direction = Sort.Direction.ASC) Pageable pageable){
-        log.info("{}",pageable);
+    public Header<List<UserApiResponse>> findAll(@PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+        log.info("{}", pageable);
         return userApiLogicService.search(pageable);
     }
 }

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Order(1)
 public class SampleListener implements ApplicationRunner { // implements ApplicationListener<ApplicationStartedEvent> 제네릭 타입이 중요하다
 
-        //application 이 bean으로 등록되기 이전에 실행되는 리스너들은
-        //빈으로 등록이 되지않아서 실행이 되지 않는다.
+    //application 이 bean으로 등록되기 이전에 실행되는 리스너들은
+    //빈으로 등록이 되지않아서 실행이 되지 않는다.
 
 
   /*  @Override
@@ -28,6 +28,6 @@ public class SampleListener implements ApplicationRunner { // implements Applica
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("foo" + args.containsOption("foo"));
-        System.out.println("bar"+ args.containsOption("bar"));
+        System.out.println("bar" + args.containsOption("bar"));
     }
 }

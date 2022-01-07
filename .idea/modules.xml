@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpringLearnLog.iml" filepath="$PROJECT_DIR$/.idea/SpringLearnLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringLearnLog.iml" filepath="$PROJECT_DIR$/SpringLearnLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpa-basic/ex1-hello-jpa.iml" filepath="$PROJECT_DIR$/jpa-basic/ex1-hello-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-petclinic/spring-petclinic.iml" filepath="$PROJECT_DIR$/spring-petclinic/spring-petclinic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootstart_whiteship/springbootstart.iml" filepath="$PROJECT_DIR$/springbootstart_whiteship/springbootstart.iml" />
     </modules>
   </component>
 </project>

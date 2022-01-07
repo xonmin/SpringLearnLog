@@ -44,7 +44,7 @@ public class OrderDetail {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;

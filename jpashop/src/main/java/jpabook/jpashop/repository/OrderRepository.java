@@ -18,16 +18,16 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class OrderRepository {
-    
-    
+
+
     @Autowired
     private final EntityManager entityManager;
 
-    public void save(Order order){
+    public void save(Order order) {
         entityManager.persist(order);
     }
 
-    public Order findOne(Long id){
+    public Order findOne(Long id) {
         return entityManager.find(Order.class, id);
     }
 
@@ -78,9 +78,10 @@ public class OrderRepository {
         }
         return query.getResultList();
     }
-        public List<Order> findAllByCriteria(OrderSearch orderSearch) {
 
-            //동적 쿼리 JPA 표준 방법  (권장하는 방법은 아니다)
+    public List<Order> findAllByCriteria(OrderSearch orderSearch) {
+
+        //동적 쿼리 JPA 표준 방법  (권장하는 방법은 아니다)
         /*
          단 점 : 실무에선 사용하기에 너무 복잡하다 / 유지보수를 할 수 없다.
          */
@@ -93,7 +94,7 @@ public class OrderRepository {
 
 
         //주문 상태 검색
-        if(orderSearch.getOrderStatus() != null){
+        if (orderSearch.getOrderStatus() != null) {
             Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
             criteria.add(status);
         }
@@ -111,8 +112,7 @@ public class OrderRepository {
         //최대 1000건
         return query.getResultList();
 
-        }
-
+    }
 
 
 }

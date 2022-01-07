@@ -25,7 +25,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     private String type;
 
@@ -38,12 +38,12 @@ public class Category {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;
 
     //  Categoty 1 : N partner
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Partner> partnerList;
 }

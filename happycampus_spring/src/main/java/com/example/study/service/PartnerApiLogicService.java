@@ -11,7 +11,7 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
-public class PartnerApiLogicService extends BaseService<PartnerApiRequest, PartnerApiResponse, Partner>{
+public class PartnerApiLogicService extends BaseService<PartnerApiRequest, PartnerApiResponse, Partner> {
 
 
     @Override
@@ -21,9 +21,9 @@ public class PartnerApiLogicService extends BaseService<PartnerApiRequest, Partn
 
     @Override
     public Header<PartnerApiResponse> read(Long id) {
-       return baseRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(partner -> response(partner))
-                .orElseGet(()->Header.ERROR("No data"));
+                .orElseGet(() -> Header.ERROR("No data"));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PartnerApiLogicService extends BaseService<PartnerApiRequest, Partn
         return null;
     }
 
-    private Header<PartnerApiResponse> response(Partner partner){
+    private Header<PartnerApiResponse> response(Partner partner) {
 
         PartnerApiResponse response = PartnerApiResponse.builder()
                 .id(partner.getId())

@@ -18,11 +18,4 @@ public class UserOrderInfoApiResponse {
     private UserApiResponse userApiResponse;
 
 
-    
-
-
-
-
-
-
 }

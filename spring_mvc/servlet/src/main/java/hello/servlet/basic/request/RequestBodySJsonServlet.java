@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "requestBodySJsonServlet", urlPatterns = "/request-body-json" )
+@WebServlet(name = "requestBodySJsonServlet", urlPatterns = "/request-body-json")
 public class RequestBodySJsonServlet extends HttpServlet {
 
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -25,7 +25,7 @@ public class RequestBodySJsonServlet extends HttpServlet {
 
 
         System.out.println("messageBody = " + messageBody);
-        
+
         //hellodata 객체로 자동 매퍼 해주는 로직 
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
 

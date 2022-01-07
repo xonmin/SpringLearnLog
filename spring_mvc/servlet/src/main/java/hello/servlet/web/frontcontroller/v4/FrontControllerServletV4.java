@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 @WebServlet(name = "frontControllerServletV4", urlPatterns = "/front-controller/v4/*")
 public class FrontControllerServletV4 extends HttpServlet {
 
@@ -25,9 +24,9 @@ public class FrontControllerServletV4 extends HttpServlet {
     private Map<String, ControllerV4> controllerMap = new HashMap<>();
 
     public FrontControllerServletV4() {
-        controllerMap.put("/front-controller/v4/members/new-form",new MemberFormControllerV4());
-        controllerMap.put("/front-controller/v4/members/save",new MemberSaveControllerV4());
-        controllerMap.put("/front-controller/v4/members",new MemberListControllerV4());
+        controllerMap.put("/front-controller/v4/members/new-form", new MemberFormControllerV4());
+        controllerMap.put("/front-controller/v4/members/save", new MemberSaveControllerV4());
+        controllerMap.put("/front-controller/v4/members", new MemberListControllerV4());
     }
 
     @Override
@@ -37,18 +36,18 @@ public class FrontControllerServletV4 extends HttpServlet {
         String requestURI = request.getRequestURI(); //URI 받기
 
         ControllerV4 controller = controllerMap.get(requestURI); //controller 매핑정보가 져오기
-        if(controller == null){ //page 가 없다면
+        if (controller == null) { //page 가 없다면
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 
         //paramMap을 넘겨주기
         Map<String, String> paramMap = createParamMap(request);
-        Map<String, Object> model =  new HashMap<>(); // v4 추가
+        Map<String, Object> model = new HashMap<>(); // v4 추가
 
         String viewName = controller.process(paramMap, model);
         MyView view = viewResolver(viewName);
-        view.render(model,request,response);
+        view.render(model, request, response);
     }
 
 
@@ -59,7 +58,7 @@ public class FrontControllerServletV4 extends HttpServlet {
 
 
     private Map<String, String> createParamMap(HttpServletRequest request) {
-        Map<String, String> paramMap =  new HashMap<>();
+        Map<String, String> paramMap = new HashMap<>();
         //request의 파라미터 다 가져오기
         request.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));

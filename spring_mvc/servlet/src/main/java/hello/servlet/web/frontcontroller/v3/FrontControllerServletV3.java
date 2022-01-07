@@ -24,9 +24,9 @@ public class FrontControllerServletV3 extends HttpServlet {
     private Map<String, ControllerV3> controllerMap = new HashMap<>();
 
     public FrontControllerServletV3() {
-        controllerMap.put("/front-controller/v3/members/new-form",new MemberFormControllerV3());
-        controllerMap.put("/front-controller/v3/members/save",new MemberSaveControllerV3());
-        controllerMap.put("/front-controller/v3/members",new MemberListControllerV3());
+        controllerMap.put("/front-controller/v3/members/new-form", new MemberFormControllerV3());
+        controllerMap.put("/front-controller/v3/members/save", new MemberSaveControllerV3());
+        controllerMap.put("/front-controller/v3/members", new MemberListControllerV3());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FrontControllerServletV3 extends HttpServlet {
         String requestURI = request.getRequestURI(); //URI 받기
 
         ControllerV3 controller = controllerMap.get(requestURI); //controller 매핑정보가 져오기
-        if(controller == null){ //page 가 없다면
+        if (controller == null) { //page 가 없다면
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
@@ -48,7 +48,7 @@ public class FrontControllerServletV3 extends HttpServlet {
         String viewName = mv.getViewName();//논리이름 new-form
         MyView view = viewResolver(viewName);
 
-        view.render(mv.getModel(),request,response);
+        view.render(mv.getModel(), request, response);
     }
 
 
@@ -59,7 +59,7 @@ public class FrontControllerServletV3 extends HttpServlet {
 
 
     private Map<String, String> createParamMap(HttpServletRequest request) {
-        Map<String, String> paramMap =  new HashMap<>();
+        Map<String, String> paramMap = new HashMap<>();
         //request의 파라미터 다 가져오기
         request.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));

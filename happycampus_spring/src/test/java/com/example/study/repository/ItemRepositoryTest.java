@@ -19,7 +19,7 @@ public class ItemRepositoryTest extends StudyApplicationTests {
 
 
     @Test
-    public void create(){
+    public void create() {
         Item item = new Item();
 
         item.setStatus(ItemStatus.REGISTERED);
@@ -39,13 +39,11 @@ public class ItemRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
-    public void read(){
+    public void read() {
         Long id = 1L;
         Optional<Item> item = itemRepository.findById(id);
 
         Assertions.assertTrue(item.isPresent());
-
-
 
 
     }

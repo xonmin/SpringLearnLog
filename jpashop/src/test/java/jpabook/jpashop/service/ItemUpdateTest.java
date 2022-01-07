@@ -17,14 +17,13 @@ public class ItemUpdateTest {
     EntityManager em;
 
 
-
     @Test
-    public void updateTest() throws Exception{
-    //given
+    public void updateTest() throws Exception {
+        //given
         Book book = em.find(Book.class, 1L);
         //TX
-    book.setName("asdasd");
-    //Tx commit 변경점에 대해 자동적으로 DB 에 반영 -> Dirty Checking (변경감지)
-    
+        book.setName("asdasd");
+        //Tx commit 변경점에 대해 자동적으로 DB 에 반영 -> Dirty Checking (변경감지)
+
     }
 }

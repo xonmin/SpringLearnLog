@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotEmpty;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+
 @Validated          //jsr 303 구현체
 @Component
 @ConfigurationProperties("xonmin")

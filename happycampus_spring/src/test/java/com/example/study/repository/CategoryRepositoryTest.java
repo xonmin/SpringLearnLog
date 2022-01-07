@@ -15,7 +15,7 @@ public class CategoryRepositoryTest extends StudyApplicationTests {
     private CategoryRepository categoryRepository;
 
     @Test
-    public void create(){
+    public void create() {
         String type = "Computer";
 
         String title = "Mac";
@@ -31,25 +31,24 @@ public class CategoryRepositoryTest extends StudyApplicationTests {
         Category newCategory = categoryRepository.save(category);
 
         Assertions.assertNotNull(newCategory);
-        Assertions.assertEquals(newCategory.getType(),type);
-        Assertions.assertEquals(newCategory.getTitle(),title);
+        Assertions.assertEquals(newCategory.getType(), type);
+        Assertions.assertEquals(newCategory.getTitle(), title);
 
     }
 
     @Test
-    public void read(){
+    public void read() {
 
         String type = "Computer";
         Optional<Category> optionalCategory = categoryRepository.findByType(type);
 
         //select * from category where type = ?
-        optionalCategory.ifPresent(c-> {
-            Assertions.assertEquals(c.getType(),type);
+        optionalCategory.ifPresent(c -> {
+            Assertions.assertEquals(c.getType(), type);
             System.out.println(c.getId());
             System.out.println(c.getType());
             System.out.println(c.getTitle());
         });
-
 
 
     }

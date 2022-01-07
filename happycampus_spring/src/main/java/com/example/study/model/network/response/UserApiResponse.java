@@ -19,11 +19,11 @@ import java.util.List;
 @Builder
 public class UserApiResponse {
 
-    private  Long id;
+    private Long id;
 
-    private  String account;
+    private String account;
 
-    private  String password;
+    private String password;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
@@ -32,7 +32,7 @@ public class UserApiResponse {
 
     private String phoneNumber;
 
-    private LocalDateTime  registeredAt;
+    private LocalDateTime registeredAt;
 
     private LocalDateTime unregisteredAt;
 

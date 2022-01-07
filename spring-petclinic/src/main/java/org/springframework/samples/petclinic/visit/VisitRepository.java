@@ -36,6 +36,7 @@ public interface VisitRepository extends Repository<Visit, Integer> {
 
 	/**
 	 * Save a <code>Visit</code> to the data store, either inserting or updating it.
+	 *
 	 * @param visit the <code>Visit</code> to save
 	 * @see BaseEntity#isNew
 	 */

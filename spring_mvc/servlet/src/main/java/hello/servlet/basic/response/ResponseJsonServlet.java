@@ -14,13 +14,14 @@ import java.io.IOException;
 public class ResponseJsonServlet extends HttpServlet {
 
     ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //content-type :application/json
         resp.setContentType("application/json");
         resp.setCharacterEncoding("utf-8");
 
-        HelloData helloData =  new HelloData();
+        HelloData helloData = new HelloData();
         helloData.setUsername("xonmin");
         helloData.setAge(24);
 

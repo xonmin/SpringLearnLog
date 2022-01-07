@@ -18,7 +18,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
 
 
     @Test
-    public void create(){
+    public void create() {
         OrderGroup orderGroup = new OrderGroup();
 
         orderGroup.setStatus("Complete");
@@ -33,7 +33,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
         orderGroup.setCreatedAt(LocalDateTime.now());
         orderGroup.setCreatedBy("AdminServer");
 
-       // orderGroup.setUser(1L);
+        // orderGroup.setUser(1L);
 
         OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
 

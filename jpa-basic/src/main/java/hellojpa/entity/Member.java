@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Member extends BaseEntity {
 
     @Id
@@ -32,11 +33,12 @@ public class Member extends BaseEntity {
         this.team = team;
         team.getMembers().add(this);
     }
+
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker; //joincolumn 무조건 넣어
 
 
-    @OneToMany(mappedBy ="member" )
+    @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 }

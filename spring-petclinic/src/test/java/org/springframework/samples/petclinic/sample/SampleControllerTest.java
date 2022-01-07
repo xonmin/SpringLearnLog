@@ -14,8 +14,9 @@ class SampleControllerTest {
 
 	@Autowired
 	ApplicationContext applicationContext;
+
 	@Test
-	public void testDI(){
+	public void testDI() {
 		SampleController bean = applicationContext.getBean(SampleController.class);
 		assertThat(bean).isNotNull();
 	}

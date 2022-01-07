@@ -27,7 +27,7 @@ public class SpringMemberControllerV2 {
         List<Member> members = memberRepository.findAll();
         ModelAndView mv = new ModelAndView("members");
 
-        mv.addObject("members",members);
+        mv.addObject("members", members);
         return mv;
     }
 
@@ -42,7 +42,7 @@ public class SpringMemberControllerV2 {
         memberRepository.save(member);
 
         ModelAndView mv = new ModelAndView("save-result");
-        mv.addObject("member",member);
+        mv.addObject("member", member);
         return mv;
 
     }

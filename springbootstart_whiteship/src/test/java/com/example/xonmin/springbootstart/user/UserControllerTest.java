@@ -21,7 +21,7 @@ public class UserControllerTest {
     MockMvc mockMvc;    //webmvc 가 자동으로 bean 으로 만들어줌
 
     @Test
-    public void hello()throws Exception{
+    public void hello() throws Exception {
         mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello"));

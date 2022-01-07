@@ -10,23 +10,23 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class ItemRepository {
-    private final EntityManager em ;
+    private final EntityManager em;
 
-    public void save(Item item){
-        if(item.getId() ==null){
+    public void save(Item item) {
+        if (item.getId() == null) {
             // item 이 처음 jpa에 저장될 때까지는 id를 가지고 저장하지 않는다.
             em.persist(item);
-        }else{
+        } else {
             em.merge(item); //merge == update 준영속 엔티티를 병합히여 변경 업데이트 쿼리를 날린다.
         }
 
     }
 
-    public Item findOne(Long id){
+    public Item findOne(Long id) {
         return em.find(Item.class, id);
     }
 
-    public List<Item> findAll(){
+    public List<Item> findAll() {
         return em.createQuery("select i from Item i ", Item.class)
                 .getResultList();
     }

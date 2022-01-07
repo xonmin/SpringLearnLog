@@ -16,20 +16,20 @@ import java.time.LocalDateTime;
 @Builder
 public class UserApiRequest {
 
-     private  Long id;
+    private Long id;
 
-     private  String account;
+    private String account;
 
-     private String password;
+    private String password;
 
-     @Enumerated(EnumType.STRING)
-     private UserStatus status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 
-     private  String email;
+    private String email;
 
-     private String phoneNumber;
+    private String phoneNumber;
 
-     private LocalDateTime registeredAt;
+    private LocalDateTime registeredAt;
 
-     private LocalDateTime unregisteredAt;
+    private LocalDateTime unregisteredAt;
 }

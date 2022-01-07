@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name= "requestHeaderServlet",urlPatterns = "/request-header")
-public class RequestHeaderServlet  extends HttpServlet {
+@WebServlet(name = "requestHeaderServlet", urlPatterns = "/request-header")
+public class RequestHeaderServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class RequestHeaderServlet  extends HttpServlet {
         System.out.println();
     }
 
-    private void printHeaders(HttpServletRequest request){
+    private void printHeaders(HttpServletRequest request) {
         System.out.println("------ Headers start ------");
 
         /*
@@ -50,7 +50,7 @@ public class RequestHeaderServlet  extends HttpServlet {
 */
         request.getHeaderNames().asIterator()
                 .forEachRemaining(headerName -> System.out.println(headerName + ":"
-                + request.getHeader(headerName)));
+                        + request.getHeader(headerName)));
         System.out.println("------ Headers END------");
     }
 
@@ -72,10 +72,12 @@ public class RequestHeaderServlet  extends HttpServlet {
         System.out.println();
 
         // header에 담겨있는 쿠키 또한 확인 가능
-        System.out.println("[cookie 편의 조회]"); if (request.getCookies() != null) {
+        System.out.println("[cookie 편의 조회]");
+        if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 System.out.println(cookie.getName() + ": " + cookie.getValue());
-            } }
+            }
+        }
         System.out.println();
         System.out.println("Content 편의 조회 ");
         System.out.println("request.getContentType() = " + request.getContentType());

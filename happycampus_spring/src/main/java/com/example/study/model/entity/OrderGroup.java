@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"user","orderDetailList"})
+@ToString(exclude = {"user", "orderDetailList"})
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 @Accessors(chain = true)
@@ -56,7 +56,7 @@ public class OrderGroup {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;
@@ -67,7 +67,7 @@ public class OrderGroup {
     private User user; // user 엔티티에 있는 mappedBy 의 명과 일치해야한다.
 
     //OrderGroup 1 : N OrderDetail
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "orderGroup")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
     private List<OrderDetail> orderDetailList;
 
 }

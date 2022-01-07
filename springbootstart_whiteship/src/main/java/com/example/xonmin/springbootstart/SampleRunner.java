@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleRunner implements ApplicationRunner {
 
-   @Autowired
-   XonminProperties xonminProperties;
-
+    @Autowired
+    XonminProperties xonminProperties;
 
 
     @Autowired

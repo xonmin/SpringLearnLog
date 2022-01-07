@@ -29,7 +29,7 @@ public class AdminUser {
 
     private String account;
 
-    private  String password;
+    private String password;
 
     private String status;
 
@@ -43,7 +43,7 @@ public class AdminUser {
 
     private LocalDateTime registeredAt;
 
-    private  LocalDateTime unregisteredAt;
+    private LocalDateTime unregisteredAt;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -52,7 +52,7 @@ public class AdminUser {
     private String createdBy;
 
     @LastModifiedDate
-    private  LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @LastModifiedBy
     private String updatedBy;

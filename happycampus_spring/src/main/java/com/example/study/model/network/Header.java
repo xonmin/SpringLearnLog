@@ -21,18 +21,19 @@ public class Header<T> {
     private LocalDateTime transactionTime;   //ISO , YYYY-MM-DD hh:mm:ss
 
     // api 응답 코드
-    private  String resultCode;
+    private String resultCode;
 
     //api  부가 설명
 
-    private  String description;
+    private String description;
 
     private T data;
 
-    private  Pagination pagination;
+    private Pagination pagination;
+
     //ok
-    public static <T> Header<T>  OK(){
-        return (Header<T>)Header.builder()
+    public static <T> Header<T> OK() {
+        return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
@@ -40,16 +41,17 @@ public class Header<T> {
     }
 
     //DATA ok
-    public static <T> Header<T>  OK(T data){
-        return (Header<T>)Header.builder()
+    public static <T> Header<T> OK(T data) {
+        return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
                 .data(data)
                 .build();
     }
-    public static <T> Header<T>  OK(T data, Pagination pagination){
-        return (Header<T>)Header.builder()
+
+    public static <T> Header<T> OK(T data, Pagination pagination) {
+        return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
@@ -60,8 +62,8 @@ public class Header<T> {
 
     //ERROR
 
-    public static <T> Header<T>  ERROR(String description){
-        return (Header<T>)Header.builder()
+    public static <T> Header<T> ERROR(String description) {
+        return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("ERROR")
                 .description(description)
