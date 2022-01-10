@@ -1,10 +1,12 @@
 package hello.itemservice.domain;
 
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -63,5 +65,31 @@ class ItemRepositoryTest {
         assertThat(byId.getItemName()).isEqualTo(updateItem.getItemName());
         assertThat(byId.getPrice()).isEqualTo(updateItem.getPrice());
         assertThat(byId.getQuantity()).isEqualTo(updateItem.getQuantity());
+    }
+
+    @Test
+    void testKey(){
+        Map<String,String> maps = new HashMap<>();
+        maps.put("xonmin","dev");
+        maps.put("s","desdv");
+        maps.put("sdsd","dddddd");
+        maps.put("adasdad","dddddsa");
+
+        Map<String,String> maps2 = new HashMap<>();
+        maps2.put("xonmin","dev");
+        maps2.put("s","desdv");
+        maps2.put("sdsd","dddddd");
+        maps2.put("adasdad","dddddsa");
+
+        Set<String> comp  = maps2.keySet();
+
+        Set<String> keySet1 = maps.keySet();
+        Set<String> keySet2 = maps.keySet();
+
+        System.out.println(comp.hashCode());
+        System.out.println(keySet1.hashCode());
+        Assertions.assertThat(keySet1.hashCode() ==  keySet2.hashCode());
+        Assertions.assertThat(comp == keySet2);
+
     }
 }
